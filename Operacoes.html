@@ -1,0 +1,56 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Operacoes.java</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<style type="text/css">
+<!--
+body {color: #000000; background-color: #ffffff; font-family: Monospaced}
+pre {color: #000000; background-color: #ffffff; font-family: Monospaced}
+table {color: #000000; background-color: #e9e8e2; font-family: Monospaced}
+.ST1 {background-color: #dfdfdf; font-family: Monospaced; font-weight: bold}
+.guarded {background-color: #dfdfdf}
+.ST2 {color: #009900}
+.ST0 {color: #0000e6; background-color: #dfdfdf}
+.literal {color: #0000e6}
+-->
+</style>
+</head>
+<body>
+<table width="100%"><tr><td align="center">J:\NetBeansProjects\Copa2010\src\copa2010\Operacoes.java</td></tr></table>
+<pre>
+ 68   <span class="ST0">private</span> <span class="ST0">void</span> <span class="ST1">jComboBox1ActionPerformed</span><span class="guarded">(</span><span class="guarded">java</span><span class="guarded">.</span><span class="guarded">awt</span><span class="guarded">.</span><span class="guarded">event</span><span class="guarded">.</span><span class="guarded">ActionEvent</span> <span class="guarded">evt</span><span class="guarded">)</span> <span class="guarded">{</span>                                           
+ 69 
+ 70         <span class="literal">if</span>(<span class="ST2">jComboBox1</span>.getSelectedIndex()==1){
+ 71     CadSelecoes mCad=<span class="literal">new</span> CadSelecoes();
+ 72     mCad.setLocationRelativeTo(<span class="literal">null</span>);
+ 73     mCad.show();
+ 74 }
+ 75         <span class="literal">if</span> (<span class="ST2">jComboBox1</span>.getSelectedIndex()==2){
+ 76               PesquisaSelecoes mPesq=<span class="literal">new</span> PesquisaSelecoes();
+ 77     mPesq.setLocationRelativeTo(<span class="literal">null</span>);
+ 78     mPesq.show();
+ 79         }
+ 80         <span class="literal">if</span> (<span class="ST2">jComboBox1</span>.getSelectedIndex()==3){
+ 81            AlteraSelecoes tAlt = <span class="literal">new</span> AlteraSelecoes();
+ 82            tAlt.setLocationRelativeTo(<span class="literal">null</span>);
+ 83            tAlt.show();
+ 84            <span class="literal">this</span>.hide();
+ 85             
+ 86         }
+ 87         
+ 88         <span class="literal">if</span> (<span class="ST2">jComboBox1</span>.getSelectedIndex()==4){
+ 89             ExcluiSelecoes tExclui = <span class="literal">new</span> ExcluiSelecoes();
+ 90             tExclui.setLocationRelativeTo(<span class="literal">null</span>);
+ 91             tExclui.show();
+ 92             
+ 93         }
+ 94          <span class="literal">if</span> (<span class="ST2">jComboBox1</span>.getSelectedIndex()==5){
+ 95              ConsultaSelecoes tCons = <span class="literal">new</span> ConsultaSelecoes();
+ 96              tCons.setLocationRelativeTo(<span class="literal">null</span>);
+ 97              tCons.show();;
+ 98              
+ 99         }
+100 <span class="guarded">    }</span>                                
+</pre></body>
+</html>

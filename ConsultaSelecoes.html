@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>ConsultaSelecoes.java</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<style type="text/css">
+<!--
+body {color: #000000; background-color: #ffffff; font-family: Monospaced}
+pre {color: #000000; background-color: #ffffff; font-family: Monospaced}
+table {color: #000000; background-color: #e9e8e2; font-family: Monospaced}
+.ST3 {font-family: Monospaced; font-weight: bold}
+.comment {color: #969696}
+.ST2 {color: #009900}
+.guarded {background-color: #dfdfdf}
+.ST0 {font-family: Monospaced; font-style: italic}
+.literal {color: #0000e6}
+.ST1 {color: #ce7b00; font-family: Monospaced; font-weight: bold}
+.string {color: #ce7b00}
+-->
+</style>
+</head>
+<body>
+<table width="100%"><tr><td align="center">J:\NetBeansProjects\Copa2010\src\copa2010\ConsultaSelecoes.java</td></tr></table>
+<pre>
+ 80 
+ 81     <span class="comment">// Driver de conexao ao MySql</span>
+ 82         String DRIVER = <span class="string">&quot;</span><span class="string">com.mysql.jdbc.Driver</span><span class="string">&quot;</span>;
+ 83         <span class="comment">// url que identifica o banco</span>
+ 84         String URL = <span class="string">&quot;</span><span class="string">jdbc:mysql://localhost:3306/copa2010</span><span class="string">&quot;</span>;
+ 85         <span class="comment">// login de usuario no banco</span>
+ 86         String usuarioBanco = <span class="string">&quot;</span><span class="string">root</span><span class="string">&quot;</span>;
+ 87         <span class="comment">// senha do usuario no banco</span>
+ 88         String senhaBanco = <span class="string">&quot;</span><span class="string">root</span><span class="string">&quot;</span>;
+ 89         <span class="comment">// variavel para conexao</span>
+ 90         Connection conexao;
+ 91          String relacao=<span class="string">&quot;</span><span class="string">Código</span><span class="string">&quot;</span>+<span class="string">&quot;</span>   <span class="string">&quot;</span>+<span class="string">&quot;</span><span class="string">Nome</span><span class="string">&quot;</span>;
+ 92     <span class="comment">/**</span> <span class="comment">Creates</span> <span class="comment">new</span> <span class="comment">form</span> <span class="comment">ConsultaSelecoes</span> <span class="comment">*/</span>
+ 93 
+ 94        
+ 95        
+ 96        <span class="comment">//Consultando as informações do Banco</span>
+ 97       <span class="literal">try</span>{
+ 98          Class.<span class="ST0">forName</span>(DRIVER);
+ 99          Connection conexao=DriverManager.<span class="ST0">getConnection</span>(URL,usuarioBanco, senhaBanco);
+100          String sql=<span class="string">&quot;</span><span class="string">select * from selecoes</span><span class="string">&quot;</span>;
+101          Statement statement= conexao.createStatement();
+102          ResultSet resultSet= statement.executeQuery(sql);
+103          <span class="literal">while</span>(resultSet.next())
+104          {
+105              String codigo=resultSet.getString(<span class="string">&quot;</span><span class="string">codigo</span><span class="string">&quot;</span>);
+106              String nome=resultSet.getString(<span class="string">&quot;</span><span class="string">nome</span><span class="string">&quot;</span>);
+107              relacao=relacao+<span class="string">&quot;</span><span class="ST1">\n</span><span class="string">&quot;</span>+codigo+<span class="string">&quot;</span>              <span class="string">&quot;</span>+nome;
+108          }
+109           <span class="ST2">jTextArea1</span>.setText(relacao);
+110           resultSet.close();
+111           statement.close();
+112           conexao.close();
+113        }
+114        <span class="literal">catch</span>(ClassNotFoundException erro){
+115            JOptionPane.<span class="ST0">showMessageDialog</span>(<span class="literal">null</span>, <span class="string">&quot;</span><span class="string">Driver JDBC-ODBC não encontrado!</span><span class="string">&quot;</span>);
+116        }
+117        <span class="literal">catch</span> (SQLException erro)
+118        {
+119            JOptionPane.<span class="ST0">showMessageDialog</span>(<span class="literal">null</span>, <span class="string">&quot;</span><span class="string">Problemas na conexão com a fonte de dados</span><span class="string">&quot;</span>
+120                    +erro.toString());
+121        }       
+122     }                                        
+123 
+124     <span class="literal">private</span> <span class="literal">void</span> <span class="ST3">jButton2ActionPerformed</span>(java.awt.event.ActionEvent evt) {                                         
+125     
+126         
+127         <span class="literal">try</span>{
+128        
+129            
+130           <span class="ST2">jTextArea1</span>.print();
+131           
+132          <span class="comment">// jLabel2.print(g);</span>
+133           
+134         }
+135         <span class="literal">catch</span>(PrinterException erro){
+136             JOptionPane.<span class="ST0">showMessageDialog</span>(<span class="literal">null</span>, <span class="string">&quot;</span><span class="string">Nao possível imprimir.</span><span class="string">&quot;</span>
+137                     + <span class="string">&quot;</span><span class="ST1">\n</span><span class="string"> Verifique se existe Impressora Instalada.</span><span class="string">&quot;</span>);
+138         }
+139         
+140         
+141 <span class="guarded">    }                   </span>
+</pre></body>
+</html>

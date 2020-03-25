@@ -1,0 +1,64 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>PesquisaSelecoes.java</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<style type="text/css">
+<!--
+body {color: #000000; background-color: #ffffff; font-family: Monospaced}
+pre {color: #000000; background-color: #ffffff; font-family: Monospaced}
+table {color: #000000; background-color: #e9e8e2; font-family: Monospaced}
+.ST1 {background-color: #dfdfdf; font-family: Monospaced; font-weight: bold}
+.guarded {background-color: #dfdfdf}
+.comment {color: #969696}
+.ST3 {color: #009900}
+.ST2 {font-family: Monospaced; font-style: italic}
+.ST0 {color: #0000e6; background-color: #dfdfdf}
+.literal {color: #0000e6}
+.string {color: #ce7b00}
+-->
+</style>
+</head>
+<body>
+<table width="100%"><tr><td align="center">J:\NetBeansProjects\Copa2010\src\copa2010\PesquisaSelecoes.java</td></tr></table>
+<pre>
+ 98  <span class="ST0">private</span> <span class="ST0">void</span> <span class="ST1">jButton1ActionPerformed</span><span class="guarded">(</span><span class="guarded">java</span><span class="guarded">.</span><span class="guarded">awt</span><span class="guarded">.</span><span class="guarded">event</span><span class="guarded">.</span><span class="guarded">ActionEvent</span> <span class="guarded">evt</span><span class="guarded">)</span> <span class="guarded">{</span>                                         
+ 99   <span class="comment">// Driver de conexao ao MySql</span>
+100         String DRIVER = <span class="string">&quot;</span><span class="string">com.mysql.jdbc.Driver</span><span class="string">&quot;</span>;
+101         <span class="comment">// url que identifica o banco</span>
+102         String URL = <span class="string">&quot;</span><span class="string">jdbc:mysql://localhost:3306/copa2010</span><span class="string">&quot;</span>;
+103         <span class="comment">// login de usuario no banco</span>
+104         String usuarioBanco = <span class="string">&quot;</span><span class="string">root</span><span class="string">&quot;</span>;
+105         <span class="comment">// senha do usuario no banco</span>
+106         String senhaBanco = <span class="string">&quot;</span><span class="string">root</span><span class="string">&quot;</span>;
+107         <span class="comment">// variavel para conexao        </span>
+108 <span class="comment">// *** Metodo para pesquisa de um determinado usuario</span>
+109         Connection con = <span class="literal">null</span>;
+110                 <span class="literal">try</span> {
+111                         Class.<span class="ST2">forName</span>(DRIVER);
+112                         con = DriverManager.<span class="ST2">getConnection</span>(URL, usuarioBanco, senhaBanco);
+113 
+114                         Statement stmt = con.createStatement();
+115                         String sql = <span class="string">&quot;</span><span class="string">select * from selecoes where codigo = </span><span class="string">&quot;</span>+<span class="ST3">jTextField1</span>.getText() ;
+116 
+117                         ResultSet rs = stmt.executeQuery(sql);
+118                         rs.next();
+119 
+120                         <span class="ST3">jLabel3</span>.setText(Integer.<span class="ST2">toString</span>(rs.getInt(1)));
+121                         <span class="ST3">jLabel5</span>.setText(rs.getString(2));
+122                         rs.close();
+123 
+124                 } <span class="literal">catch</span> (ClassNotFoundException e) {
+125                         e.printStackTrace();
+126                 } <span class="literal">catch</span> (SQLException e) {
+127                         e.printStackTrace();
+128                 } <span class="literal">finally</span>{
+129                         <span class="literal">try</span>{
+130                                 con.close();
+131                         }<span class="literal">catch</span>(Exception e){
+132                                 e.printStackTrace();
+133                         }
+134                 }
+135 <span class="guarded">    }</span>       
+</pre></body>
+</html>

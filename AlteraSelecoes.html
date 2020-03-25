@@ -1,0 +1,75 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>AlteraSelecoes.java</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<style type="text/css">
+<!--
+body {color: #000000; background-color: #ffffff; font-family: Monospaced}
+pre {color: #000000; background-color: #ffffff; font-family: Monospaced}
+table {color: #000000; background-color: #e9e8e2; font-family: Monospaced}
+.ST1 {background-color: #dfdfdf; font-family: Monospaced; font-weight: bold}
+.guarded {background-color: #dfdfdf}
+.comment {color: #969696}
+.ST3 {color: #009900}
+.ST2 {font-family: Monospaced; font-style: italic}
+.ST0 {color: #0000e6; background-color: #dfdfdf}
+.literal {color: #0000e6}
+.string {color: #ce7b00}
+-->
+</style>
+</head>
+<body>
+<table width="100%"><tr><td align="center">J:\NetBeansProjects\Copa2010\src\copa2010\AlteraSelecoes.java</td></tr></table>
+<pre>
+123    <span class="ST0">private</span> <span class="ST0">void</span> <span class="ST1">jButton1ActionPerformed</span><span class="guarded">(</span><span class="guarded">java</span><span class="guarded">.</span><span class="guarded">awt</span><span class="guarded">.</span><span class="guarded">event</span><span class="guarded">.</span><span class="guarded">ActionEvent</span> <span class="guarded">evt</span><span class="guarded">)</span> <span class="guarded">{</span>                                         
+124         
+125         <span class="comment">// Driver de conexao ao MySql</span>
+126         String DRIVER = <span class="string">&quot;</span><span class="string">com.mysql.jdbc.Driver</span><span class="string">&quot;</span>;
+127         <span class="comment">// url que identifica o banco</span>
+128         String URL = <span class="string">&quot;</span><span class="string">jdbc:mysql://localhost:3306/copa2010</span><span class="string">&quot;</span>;
+129         <span class="comment">// login de usuario no banco</span>
+130         String usuarioBanco = <span class="string">&quot;</span><span class="string">root</span><span class="string">&quot;</span>;
+131         <span class="comment">// senha do usuario no banco</span>
+132         String senhaBanco = <span class="string">&quot;</span><span class="string">root</span><span class="string">&quot;</span>;
+133         <span class="comment">// variavel para conexao</span>
+134         Connection conexao;
+135         
+136         conexao = <span class="literal">null</span>;
+137                 PreparedStatement ps = <span class="literal">null</span>;
+138 
+139                 <span class="literal">try</span> {
+140                         Class.<span class="ST2">forName</span>(DRIVER);
+141                         conexao = DriverManager.<span class="ST2">getConnection</span>(URL, usuarioBanco, senhaBanco);
+142 
+143                         String sqlUpdate = <span class="string">&quot;</span><span class="string">update selecoes set nome = ? where codigo = ?;</span><span class="string">&quot;</span>;
+144 
+145                         ps = conexao.prepareStatement(sqlUpdate);
+146                         
+147                         ps.setString(1, <span class="ST3">txt_Nome</span>.getText());
+148                         ps.setInt(2, Integer.<span class="ST2">parseInt</span>(<span class="ST3">txt_Codigo</span>.getText()));
+149                         ps.executeUpdate();
+150 JOptionPane.<span class="ST2">showMessageDialog</span>(<span class="literal">null</span>, <span class="string">&quot;</span><span class="string">Alteração Realizada com Sucesso!</span><span class="string">&quot;</span>);
+151 
+152                 } <span class="literal">catch</span> (ClassNotFoundException e) {
+153                         e.printStackTrace();
+154 
+155                 } <span class="literal">catch</span> (SQLException e) {
+156                         e.printStackTrace();
+157 
+158                 } <span class="literal">finally</span>{
+159 
+160                         <span class="literal">try</span>{
+161                                 ps.close();
+162                                 conexao.close();
+163 
+164                         }<span class="literal">catch</span>(Exception e){
+165                                 e.printStackTrace();
+166                         }
+167 
+168                 }
+169 
+170         
+171 <span class="guarded">    }</span>
+</pre></body>
+</html>

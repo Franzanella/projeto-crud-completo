@@ -1,0 +1,64 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>ExcluiSelecoes.java</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<style type="text/css">
+<!--
+body {color: #000000; background-color: #ffffff; font-family: Monospaced}
+pre {color: #000000; background-color: #ffffff; font-family: Monospaced}
+table {color: #000000; background-color: #e9e8e2; font-family: Monospaced}
+.comment {color: #969696}
+.ST1 {color: #009900}
+.guarded {background-color: #dfdfdf}
+.ST0 {font-family: Monospaced; font-style: italic}
+.literal {color: #0000e6}
+.string {color: #ce7b00}
+-->
+</style>
+</head>
+<body>
+<table width="100%"><tr><td align="center">J:\NetBeansProjects\Copa2010\src\copa2010\ExcluiSelecoes.java</td></tr></table>
+<pre>
+106   <span class="comment">// Driver de conexao ao MySql</span>
+107         String DRIVER = <span class="string">&quot;</span><span class="string">com.mysql.jdbc.Driver</span><span class="string">&quot;</span>;
+108         <span class="comment">// url que identifica o banco</span>
+109         String URL = <span class="string">&quot;</span><span class="string">jdbc:mysql://localhost:3306/copa2010</span><span class="string">&quot;</span>;
+110         <span class="comment">// login de usuario no banco</span>
+111         String usuarioBanco = <span class="string">&quot;</span><span class="string">root</span><span class="string">&quot;</span>;
+112         <span class="comment">// senha do usuario no banco</span>
+113         String senhaBanco = <span class="string">&quot;</span><span class="string">root</span><span class="string">&quot;</span>;
+114         <span class="comment">// variavel para conexao</span>
+115         Connection con = <span class="literal">null</span>;
+116         PreparedStatement ps=<span class="literal">null</span>;
+117         Statement st = <span class="literal">null</span>;
+118         <span class="comment">//Statement stmt = con.createStatement();</span>
+119         
+120                 <span class="literal">try</span> {
+121                         Class.<span class="ST0">forName</span>(DRIVER);
+122                         con = DriverManager.<span class="ST0">getConnection</span>(URL, usuarioBanco, senhaBanco);
+123 
+124                         st = con.createStatement();
+125                         <span class="comment">//String sql = &quot;select * from selecoes where codigo = &quot;;</span>
+126                         String sqlDelete = <span class="string">&quot;</span><span class="string">delete from selecoes where codigo = </span><span class="string">&quot;</span>+<span class="ST1">jTextField1</span>.getText()+<span class="string">&quot;</span><span class="string">;</span><span class="string">&quot;</span>;
+127                         <span class="comment">//stmt = con.prepareStatement(sqlDelete);</span>
+128                         <span class="comment">//ps.setInt(1, Integer.parseInt(jTextField1.getText()));</span>
+129                         <span class="comment">//st.executeQuery(sqlDelete);</span>
+130                         st.executeUpdate(sqlDelete);
+131                         JOptionPane.<span class="ST0">showMessageDialog</span>(<span class="literal">null</span>, <span class="string">&quot;</span><span class="string">Exlcuido</span><span class="string">&quot;</span>);
+132 
+133                 } <span class="literal">catch</span> (ClassNotFoundException e) {
+134                         e.printStackTrace();
+135                 } <span class="literal">catch</span> (SQLException e) {
+136                         e.printStackTrace();
+137                 } <span class="literal">finally</span>{
+138                         <span class="literal">try</span>{
+139                             st.close();
+140                                 con.close();
+141                         }<span class="literal">catch</span>(Exception e){
+142                                 e.printStackTrace();
+143                         }
+144                 }
+145 <span class="guarded">    }</span>                     
+</pre></body>
+</html>

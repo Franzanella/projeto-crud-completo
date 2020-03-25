@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>CadSelecoes.java</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<style type="text/css">
+<!--
+body {color: #000000; background-color: #ffffff; font-family: Monospaced}
+pre {color: #000000; background-color: #ffffff; font-family: Monospaced}
+table {color: #000000; background-color: #e9e8e2; font-family: Monospaced}
+.ST1 {background-color: #dfdfdf; font-family: Monospaced; font-weight: bold}
+.guarded {background-color: #dfdfdf}
+.comment {color: #969696}
+.ST3 {color: #009900}
+.ST2 {font-family: Monospaced; font-style: italic}
+.ST0 {color: #0000e6; background-color: #dfdfdf}
+.literal {color: #0000e6}
+.string {color: #ce7b00}
+-->
+</style>
+</head>
+<body>
+<table width="100%"><tr><td align="center">J:\NetBeansProjects\Copa2010\src\copa2010\CadSelecoes.java</td></tr></table>
+<pre>
+ 76 <span class="ST0">private</span> <span class="ST0">void</span> <span class="ST1">jButton1ActionPerformed</span><span class="guarded">(</span><span class="guarded">java</span><span class="guarded">.</span><span class="guarded">awt</span><span class="guarded">.</span><span class="guarded">event</span><span class="guarded">.</span><span class="guarded">ActionEvent</span> <span class="guarded">evt</span><span class="guarded">)</span> <span class="guarded">{</span>                                         
+ 77         <span class="comment">// Driver de conexao ao MySql</span>
+ 78         String DRIVER = <span class="string">&quot;</span><span class="string">com.mysql.jdbc.Driver</span><span class="string">&quot;</span>;
+ 79         <span class="comment">// url que identifica o banco</span>
+ 80         String URL = <span class="string">&quot;</span><span class="string">jdbc:mysql://localhost:3306/copa2010</span><span class="string">&quot;</span>;
+ 81         <span class="comment">// login de usuario no banco</span>
+ 82         String usuarioBanco = <span class="string">&quot;</span><span class="string">root</span><span class="string">&quot;</span>;
+ 83         <span class="comment">// senha do usuario no banco</span>
+ 84         String senhaBanco = <span class="string">&quot;</span><span class="string">root</span><span class="string">&quot;</span>;
+ 85         <span class="comment">// variavel para conexao</span>
+ 86         Connection conexao;
+ 87         conexao=<span class="literal">null</span>;
+ 88                 PreparedStatement ps = <span class="literal">null</span>;
+ 89                 <span class="literal">try</span> {
+ 90                        Class.<span class="ST2">forName</span>(DRIVER);
+ 91                        conexao=DriverManager.<span class="ST2">getConnection</span>(URL, usuarioBanco,senhaBanco);
+ 92                         <span class="comment">// O campo codigo na tabela seleçoes e do tipo int.</span>
+ 93                         <span class="comment">// Para inserir um novo usuario eh necessario obter o proximo codigo</span>
+ 94                         <span class="comment">// A funcao max() retorna o maior valor da coluna especificada</span>
+ 95                         <span class="comment">// (nesse caso o ultimo codigo armazenado)</span>
+ 96                         Statement stmt = conexao.createStatement();
+ 97                         String sql = <span class="string">&quot;</span><span class="string">select max(codigo) from selecoes</span><span class="string">&quot;</span>;
+ 98                         ResultSet rs = stmt.executeQuery(sql);
+ 99                         rs.next();
+100                         <span class="comment">// Incrementando o ultimo codigo armazenado temos o codigo do novo usuario</span>
+101                         <span class="literal">int</span> proximoCodigo = rs.getInt(1) + 1;
+102                         rs.close();
+103 
+104                         <span class="comment">// Aqui utilizamos a classe PreparedStatement que permite a insercao de</span>
+105                         <span class="comment">// parametros (?) na construcao da string de SQL</span>
+106                         String sqlInsert = <span class="string">&quot;</span><span class="string">insert into selecoes values(?, ?);</span><span class="string">&quot;</span>;
+107 
+108                         ps = conexao.prepareStatement(sqlInsert);
+109                         ps.setInt(1, proximoCodigo);
+110                         ps.setString(2, <span class="ST3">jTextField1</span>.getText());
+111                         ps.executeUpdate();
+112 
+113 JOptionPane.<span class="ST2">showMessageDialog</span>(<span class="literal">null</span>, <span class="string">&quot;</span><span class="string">Cadastro Efetuado com Sucesso</span><span class="string">&quot;</span>);
+114                 }
+115                 <span class="literal">catch</span> (ClassNotFoundException e) {
+116                         e.printStackTrace();
+117 
+118                 } <span class="literal">catch</span> (SQLException e) {
+119                         e.printStackTrace();
+120 
+121                 } <span class="literal">finally</span>{
+122 
+123                         <span class="literal">try</span>{
+124                                 ps.close();
+125                                 conexao.close();
+126 
+127                         }<span class="literal">catch</span>(Exception e){
+128                                 e.printStackTrace();
+129                         }
+130 
+131                 }
+132 <span class="guarded">    }</span>                     
+</pre></body>
+</html>
